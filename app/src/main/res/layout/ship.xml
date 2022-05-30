@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingConstraints">
+
+    <ImageView
+        android:id="@+id/ship_1"
+        android:layout_width="234dp"
+        android:layout_height="205dp"
+        android:src="@drawable/ship_1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="6dp" />
+
+    <ImageView
+        android:id="@+id/ship_2"
+        android:layout_width="223dp"
+        android:layout_height="140dp"
+        android:src="@drawable/ship_2"
+        tools:layout_editor_absoluteX="11dp"
+        tools:layout_editor_absoluteY="253dp" />
+
+    <ImageView
+        android:id="@+id/ship_3"
+        android:layout_width="232dp"
+        android:layout_height="142dp"
+        android:src="@drawable/ship_5"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="416dp" />
+
+    <ImageView
+        android:id="@+id/ship_4"
+        android:layout_width="235dp"
+        android:layout_height="141dp"
+        android:src="@drawable/ship_4"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="589dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
