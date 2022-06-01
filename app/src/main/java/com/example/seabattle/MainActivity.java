@@ -5,6 +5,8 @@ import static java.lang.Thread.sleep;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -18,11 +20,14 @@ private Game sGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initApp();
+    }
+
+    private void initApp() {
         setContentView(R.layout.activity_main);
     }
 
-
-    public void BattleStart(View v){
+    public void battleStart(View v){
        sBattle = new Interface(this);
        sBattle.setOnTouchListener(this);
        setContentView(sBattle);
@@ -58,16 +63,16 @@ private Game sGame;
         return true;
     }
 
-    /**
-     * Attack enemy's ships.
-     * @param i row position of cell
-     * @param j column position of cell
-     * @return True, that means end of player's attack
-     *          and then enemy will hit, cause ACTION.UP called after
-     *          ACTION.DOW return true;
-     *          False, if attack was successul and player will attack
-     *          again, cause of game rules.
-     */
+
+//      Attack enemy's ships.
+//      @param i row position of cell
+//      @param j column position of cell
+//      @return True, that means end of player's attack
+//               and then enemy will hit, cause ACTION.UP called after
+//               ACTION.DOW return true;
+//               False, if attack was successul and player will attack
+//               again, cause of game rules.
+
     private boolean playerAttackEnemy(int i, int j){
         sBattle.setTurn(playerTurn);
         sBattle.invalidate();
@@ -134,6 +139,24 @@ private Game sGame;
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
-
+    /**
+     * Can restart the game;
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                initApp();
+                return true;
+        }
+        return true;
+    }
 }

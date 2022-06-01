@@ -10,13 +10,13 @@ public class Game {
         field.setField(false);
     }
 
-    /**
-     * Make player step.
-     * @param ip i coordinate of cell(row)
-     * @param jp j coordinate of cell(column)
-     * @return true if player hit any ship,
-     * else false.
-     */
+
+//      Make player step.
+//      @param ip i coordinate of cell(row)
+//      @param jp j coordinate of cell(column)
+//      @return true if player hit any ship,
+//      else false.
+
     public boolean attackEnemy(int ip, int jp){
         return field.hitEnemy(ip,jp);
     }

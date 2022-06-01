@@ -64,16 +64,16 @@ public class PositionAndMove {
                 savedField[i][j] = field[i][j];
     }
 
-    /**
-     * Add ship's part on the cell of
-     * field's field.
-     * @param s is Ship must added on the field
-     * @param playerField if true it refers to player field
-     *               false - to enemy.
-     * @return true if it possible to add
-     * and it had been added,
-     * false in other case.
-     */
+
+//      Add ship's part on the cell of
+//      field's field.
+//      @param s is Ship must added on the field
+//      @param playerField if true it refers to player field
+//                    false - to enemy.
+//      @return true if it possible to add
+//      and it had been added,
+//      false in other case.
+
     public boolean addShip(Ship s, boolean playerField ) {
         int[][] field;
         if(playerField)
@@ -119,13 +119,10 @@ public class PositionAndMove {
         }
     }
 
-    /**
-     * Check on busy neighbour cells.
-     * Need to avoid conflicts on ship's placement.
-     * READ TODO.txt
-     * @return true if  there are no conflicts
-     * @param s is ship must be checked on possible touching to other ships.
-     */
+//      Check on busy neighbour cells.
+//      Need to avoid conflicts on ship's placement.
+//      @return true if  there are no conflicts
+//      @param s is ship must be checked on possible touching to other ships.
     private boolean checkNeighbourCells(Ship s, int[][]field) {
 
         //get cells
@@ -254,11 +251,11 @@ public class PositionAndMove {
         return true;
     }
 
-    /**
-     *
-     * @param s Ship might be placed at the border of field
-     * @return
-     */
+
+//
+//      @param s Ship might be placed at the border of field
+//      @return
+
     int getBorderTouch(Ship s) {
         //get cells
         int[][] p = s.getPosition();
@@ -278,21 +275,22 @@ public class PositionAndMove {
         return border;
     }
 
-    /**
-     * Random place enemy ships.
-     * @param player true - generate player field,
-     *               else - pc.
-     */
+
+//      Random place enemy ships.
+//      @param player true - generate player field,
+//                    else - pc.
+
     public void setField(boolean player){
         final int nShip = 10;
         Ship[] ships = generateShips(nShip);
         for(int i = 0; i <= nShip/2; ++i){
-            /**
-             if(i > 5) {
-             while(!addShip(ships[i], player)){
-             ships[i].setPosition(generateShipPosition(oneDeck));}
-             }
-             else*/ if (i > 2){
+//
+//             if(i > 5) {
+//             while(!addShip(ships[i], player)){
+//             ships[i].setPosition(generateShipPosition(oneDeck));}
+//             }
+//             else
+              if (i > 2){
                 while(!addShip(ships[i], player)){
                     ships[i].setPosition(generateShipPosition(twoDeck));}
             }
@@ -367,11 +365,10 @@ public class PositionAndMove {
             }
             return true;
         } else successfulHitPlayer = false;
-        /**
-         * Something in logic was WRONG!!!
-         * Need to be fixed in next version.
-         * Now just reset all variables.
-         */
+
+//         Something in logic was WRONG!!!
+//         Need to be fixed in next version.
+//         Now just reset all variables.
         if (player[p.i][p.j] >= ATTACKED) {
             successfulHitPlayer = false;
             shipShooting = false;
@@ -407,9 +404,9 @@ public class PositionAndMove {
             } else {
                 curEnemyHit.pop();
                 //change next direction
-                /**
-                 * must be deleted if ==
-                 */
+
+                  //must be deleted if ==
+
                 Toward t = allDirect.pop();
                 //if (curDir == t)
                 //    curDir = allDirect.pop();
@@ -441,7 +438,7 @@ public class PositionAndMove {
             for (int i = 0; i < N; ++i) {
                 for (int j = 0; j < N; ++j) {
                     if (field[i][j] == ATTACKED_SHIP) {
-                        /** not touch the border ship!!! */
+                         //not touch the border ship!!!
                         if (field[i + 1][j] != ATTACKED_SHIP)
                             field[i + 1][j] = ATTACKED;
                         if (field[i - 1][j] != ATTACKED_SHIP)
@@ -469,11 +466,10 @@ public class PositionAndMove {
             }
         }
 
-/**
- * Get position of cell, if pc have git ship,
- * but have not killed.
- * @return position.
- */
+
+//  Get position of cell, if pc have git ship,
+//  but have not killed.
+//  @return position.
         private Pair getContinuingHit () {
             Pair p = new Pair();
             Pair last = curEnemyHit.lastElement();
@@ -523,11 +519,9 @@ public class PositionAndMove {
             return p;
         }
 
-        /**
-         * Get coordinate of player's cell must be hitted
-         * @return Pair contained i and j pos of cell.
-         */
 
+//         * Get coordinate of player's cell must be hitted
+//         * @return Pair contained i and j pos of cell.
         private Pair getCoordinateToHit () {
             Pair p = new Pair();
             Random r = new Random();
@@ -570,7 +564,7 @@ public class PositionAndMove {
             return p;
         }
 
-//
+
 //          Check cell if it part of ship and did some ship here was killed.
 //          //It must be called after attacking only!(after BattleField::hit(...))
 //          @param ip i coordinate of cell(row)
@@ -580,7 +574,6 @@ public class PositionAndMove {
 //          @return true if ship's part located at (ip,jp) belong to some ship
 //          and this ship is killed(every its part was attacked);
 //          false if it's not a part of ship or this ship had not been killed.
-//
         boolean isKilledShip ( int ip, int jp, boolean playerAttacked){
             int[][] field;
             if (!playerAttacked)

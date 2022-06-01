@@ -31,6 +31,7 @@ public class Interface extends SurfaceView {
     public Interface(Context context) {
         super(context);
         paint = new Paint();
+        setWillNotDraw(false);
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.battle);
     }
 
@@ -72,10 +73,10 @@ public class Interface extends SurfaceView {
 
         //vertical lines
         for(int i = 0; i <= plr; i += cellSize)
-            canvas.drawLine(i, yStart, i, plr, paint );
+            canvas.drawLine(i, xStart, i, plr, paint );
         //horizontal lines
         for(int i = 0; i <= plr; i += cellSize)
-            canvas.drawLine(xStart, i, plr, i, paint );
+            canvas.drawLine(yStart, i, plr, i, paint );
 
         //draw indicator
         if(turn)
