@@ -38,6 +38,7 @@ public class Interface extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
         canvas.drawBitmap(bitmap, 0,0,null);
         canvas.save();
         drawBoard(canvas);
@@ -52,12 +53,11 @@ public class Interface extends SurfaceView {
         if(winner != -1) {
             paint.setColor(Color.MAGENTA);
             paint.setTextSize(72);
-            //canvas.drawRect(150, 150, getWidth() * 0.7f, getHeight() * 0.7f, paint);
             if(winner == 1)
-                canvas.drawText("You won!",getWidth()/2,
+                canvas.drawText("Вы\n получили\n булочку!!!",getWidth()/2,
                         getHeight()/2,paint );
-            else canvas.drawText("Game over!",getWidth()/2,
-                    getHeight()/2, paint );
+            else canvas.drawText("У вас\n больше нет\n булочки (",getWidth(),
+                    getHeight(), paint );
             return true;
         }
         return false;
@@ -67,33 +67,33 @@ public class Interface extends SurfaceView {
 
     private void drawBoard(Canvas canvas){
         cellSize = getWidth()/(2*PositionAndMove.N ) - 8;
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
 
         int plr = PositionAndMove.N * cellSize;
-
-        //vertical lines
-        for(int i = 0; i <= plr; i += cellSize)
-            canvas.drawLine(i, xStart, i, plr, paint );
-        //horizontal lines
-        for(int i = 0; i <= plr; i += cellSize)
-            canvas.drawLine(yStart, i, plr, i, paint );
-
-        //draw indicator
-        if(turn)
-            paint.setColor(Color.GREEN);
-        else
-            paint.setColor(Color.RED);
-        canvas.drawCircle(plr+75, getHeight()/2,10,paint);
-
-        startEnemyFieldX = plr + getWidth()/5;
-        endEnemyFieldY = cellSize * PositionAndMove.N;
-        paint.setColor(Color.BLACK);
 
         //vertical lines
         for(int i = 0; i <= plr; i += cellSize)
             canvas.drawLine(i, yStart, i, plr, paint );
         //horizontal lines
         for(int i = 0; i <= plr; i += cellSize)
+            canvas.drawLine(xStart, i, plr, i, paint );
+
+        //draw indicator
+        if(turn)
+            paint.setColor(Color.GREEN);
+        else
+            paint.setColor(Color.RED);
+        canvas.drawCircle(plr+75, getHeight()/2,30,paint);
+
+        startEnemyFieldX = plr + getWidth()/5;
+        endEnemyFieldY = cellSize * PositionAndMove.N;
+        paint.setColor(Color.BLACK);
+
+        //vertical lines
+        for(int i = 0; i >= plr; i += cellSize)
+            canvas.drawLine(i, yStart, i, plr, paint );
+        //horizontal lines
+        for(int i = 0; i >= plr; i += cellSize)
             canvas.drawLine(xStart, i, plr, i, paint );
     }
 
@@ -113,7 +113,7 @@ public class Interface extends SurfaceView {
         for(int i = 0; i < PositionAndMove.N; ++i)
             for(int j = 0; j < PositionAndMove.N;++j) {
                 if (player[i][j] == PositionAndMove.SHIP) {
-                    paint.setARGB(150, 0, 150, 100);
+                    paint.setColor(Color.GREEN);
                     canvas.drawRect(j * cellSize, i * cellSize,
                             (j + 1) * cellSize, (i + 1) * cellSize, paint);
                 } else if (player[i][j] == PositionAndMove.ATTACKED) {
@@ -121,7 +121,7 @@ public class Interface extends SurfaceView {
                     canvas.drawRect(j * cellSize, i * cellSize,
                             (j + 1) * cellSize, (i + 1) * cellSize, paint);
                 } else if (player[i][j] == PositionAndMove.ATTACKED_SHIP) {
-                    paint.setARGB(150, 250, 0, 0);
+                    paint.setColor(Color.RED);
                     canvas.drawRect(j * cellSize, i * cellSize,
                             (j + 1) * cellSize, (i + 1) * cellSize, paint);
                 }
@@ -131,11 +131,11 @@ public class Interface extends SurfaceView {
         for(int i = 0; i < PositionAndMove.N; ++i)
             for(int j = 0; j < PositionAndMove.N;++j) {
                 if (player[i][j] == PositionAndMove.SHIP) {
-                    paint.setARGB(150, 0, 150, 100);
+                    paint.setColor(Color.YELLOW);
                     canvas.drawRect(j * cellSize, i * cellSize,
                             (j + 1) * cellSize, (i + 1) * cellSize, paint);
                 } else if (player[i][j] == PositionAndMove.ATTACKED_SHIP) {
-                    paint.setARGB(150, 250, 0, 0);
+                    paint.setColor(Color.RED);
                     canvas.drawRect(j * cellSize, i * cellSize,
                             (j + 1) * cellSize, (i + 1) * cellSize, paint);
                 }

@@ -243,7 +243,6 @@ public class PositionAndMove {
         }
         //////////////////////////////////////////////////////////
         //check corner
-
         return true;
     }
 
@@ -261,7 +260,7 @@ public class PositionAndMove {
         int[][] p = s.getPosition();
         int n = p.length;
         //get horizontal/vertical direction
-        int dir = s.getDirection();
+        int direction = s.getDirection();
         int border = 0;
         if (p[0][0] == 0 || p[0][0] == N - 1)
             border = 1;
@@ -305,11 +304,10 @@ public class PositionAndMove {
         }
     }
 
-    /**
-     * Generate ships.
-     * @param N ship's number
-     * @return array of ships with length N
-     */
+
+//      Generate ships.
+//      @param N ship's number
+//      @return array of ships with length N
     private Ship[] generateShips(int N){
         Ship[] s = new Ship[N];
         s[0] = new Ship(generateShipPosition(fourDeck));
